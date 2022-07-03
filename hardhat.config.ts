@@ -5,6 +5,7 @@ import "hardhat-gas-reporter";
 import "solidity-coverage";
 import * as dotenv from "dotenv";
 import { HardhatUserConfig, task } from "hardhat/config";
+import * as process from "process";
 
 dotenv.config();
 
@@ -48,6 +49,13 @@ const config: HardhatUserConfig = {
         process.env.TEST_WALLET_PRIVATE_KEY || "",
       ],
     },
+    bscTestnet: {
+      url: process.env.BSC_TESTNET_URL || "",
+      accounts: [
+        process.env.PRIVATE_KEY || "",
+        process.env.TEST_WALLET_PRIVATE_KEY || "",
+      ],
+    },
   },
   mocha: {
     timeout: 100000000,
@@ -57,7 +65,12 @@ const config: HardhatUserConfig = {
     currency: "USD",
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: {
+      // @ts-ignore
+      rinkeby: process.env.ETHERSCAN_API_KEY,
+      // @ts-ignore
+      bscTestnet: process.env.BSCSCAN_API_KEY,
+    },
   },
 };
 

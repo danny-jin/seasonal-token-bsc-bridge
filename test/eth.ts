@@ -2,12 +2,11 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { Contract } from "ethers";
 import { ethers } from "hardhat";
 
-describe("Seasonal Bridge Test", () => {
+describe("Seasonal Bridge Test eth network", () => {
   let Token;
 
   let springToken: Contract,
     ethBridgeContract: Contract,
-    bscBridgeContract: Contract,
     deployer: SignerWithAddress,
     admin: SignerWithAddress;
   describe("Deploy", () => {
@@ -28,13 +27,6 @@ describe("Seasonal Bridge Test", () => {
       console.log(
         "ethBridgeContract verify: ",
         `npx hardhat verify --contract "contracts/EthBridge.sol:EthBridge" --network rinkeby ${ethBridgeContract.address} ${admin.address}`
-      );
-      Token = await ethers.getContractFactory("BscBridge");
-      bscBridgeContract = await Token.deploy(admin.address);
-      console.log("bscBridgeContract address: ", bscBridgeContract.address);
-      console.log(
-        "bscBridgeContract verify: ",
-        `npx hardhat verify --contract "contracts/BscBridge.sol:BscBridge" --network rinkeby ${ethBridgeContract.address} ${admin.address}`
       );
     });
   });
