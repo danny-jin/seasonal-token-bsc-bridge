@@ -56,6 +56,22 @@ const config: HardhatUserConfig = {
         process.env.TEST_WALLET_PRIVATE_KEY || "",
       ],
     },
+    mainnet: {
+      url: process.env.ETHEREUM_URL || "",
+      accounts: [
+        process.env.PRIVATE_KEY || "",
+        process.env.TEST_WALLET_PRIVATE_KEY || "",
+      ],
+    },
+    bsc: {
+      url: process.env.BSC_URL || "",
+      accounts: [
+        process.env.PRIVATE_KEY || "",
+        process.env.TEST_WALLET_PRIVATE_KEY || "",
+      ],
+      gas: 2100000,
+      gasPrice: 8000000000,
+    },
   },
   mocha: {
     timeout: 100000000,
@@ -66,6 +82,10 @@ const config: HardhatUserConfig = {
   },
   etherscan: {
     apiKey: {
+      // @ts-ignore
+      mainnet: process.env.ETHERSCAN_API_KEY,
+      // @ts-ignore
+      bsc: process.env.BSCSCAN_API_KEY,
       // @ts-ignore
       rinkeby: process.env.ETHERSCAN_API_KEY,
       // @ts-ignore

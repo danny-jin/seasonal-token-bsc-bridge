@@ -16,7 +16,7 @@ describe("Seasonal Bridge Test eth network", () => {
       console.log("ethBridgeContract address: ", ethBridgeContract.address);
       console.log(
         "ethBridgeContract verify: ",
-        `npx hardhat verify --contract "contracts/EthBridge.sol:EthBridge" --network rinkeby ${ethBridgeContract.address} ${adminAddress}`
+        `npx hardhat verify --contract "contracts/EthBridge.sol:EthBridge" --network mainnet ${ethBridgeContract.address} ${adminAddress}`
       );
     });
   });
